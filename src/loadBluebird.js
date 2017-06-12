@@ -7,10 +7,14 @@ module.exports = {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 logger.log(`Constructor inside Bluebird: ${Promise.prototype.constructor.name}`);
-                return resolve("Bluebird resolved");
+                return resolve(true);
             })
         }).finally((result) => {
-            logger.log(result);
+            if (result === true) {
+                logger.log("    Bluebird resolved properly");
+            } else {
+                logger.log("    Bluebird failed to resolve properly");
+            }
             return Promise.resolve(result);
         })
     }

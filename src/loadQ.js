@@ -8,11 +8,15 @@ module.exports = {
             var deferred = Promise.defer();
             setTimeout(() => {
                 logger.log(`Constructor inside Q: ${Promise.prototype.constructor.name}`);
-                deferred.resolve("Q resolved");
+                deferred.resolve(true);
             }, 1000);
             return deferred.promise;
         }).then((result) => {
-            logger.log(result);
+            if (result === true) {
+                logger.log("    Q resolved properly");
+            } else {
+                logger.log("    Q failed to resolve properly");
+            }
             return Promise.fcall(() => {
                 return result;
             })

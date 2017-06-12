@@ -13,21 +13,21 @@ Initial constructor: ${Promise.prototype.constructor.name}`);
         bluebird.run()
             .then((result) => {
                 logger.log("    Bluebird resolved with", result);
-                if (!result) {
-                    throw new Error("Result undefined");
+                if (result !== true) {
+                    throw new Error("Bluebird failed to resolve");
                 }
             }),
         q.run()
             .then((result) => {
                 logger.log("    Q resolved with ", result);
-                if (!result) {
-                    throw new Error("Result undefined");
+                if (result !== true) {
+                    throw new Error("Q failed to resolve");
                 }
             })
     ]).then(() => {
         logger.log(`\
 --------------------------------------------------------------------------------`);
-        resolve(true);
+        return true;
     })
     .catch((error) => {
         logger.log(error);

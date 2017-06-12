@@ -1,7 +1,7 @@
 const assert = require("assert");
 
 describe("Changing global.Promise in a module", () => {
-    it("Loading Bluebird shouldn't matter", () => {
+    it("Loading Bluebird first shouldn't matter", () => {
         return require("../src/bluebirdFirst")().then((result) => {
             assert(result);
         })
